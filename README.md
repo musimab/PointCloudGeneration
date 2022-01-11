@@ -8,8 +8,9 @@ pip install pyrealsense2
 ## Usage
 There are two options for obtaining point cloud data in ply format, first we can create point clouds with numpy or we can use ready-made functions from open3d library. But the important point is to understand how these point clouds are formed, so it will be more thought-provoking to write it from scratch with numpy.That's why I added both functions to the utils.py
 
+"""
 python realsensePointCloud.py
-
+"""
 
 ## From depth map to point cloud
 
@@ -23,4 +24,6 @@ in DepthCamera class. Realsense camera configuration consist of many options the
 it has nothing to do with the focal length of the camera.
 Depth maps are typically stored in 16-bit unsigned integers at millimeter scale, thus to obtain Z value in meters, the depth map pixels need to be divided by 1000.
 
+![Alt text](/home/mustafa/Desktop/RealSenseTutorials/PointCloudGeneration/images/frame_color.png?raw=true "Title")
+![Alt text](/home/mustafa/Desktop/RealSenseTutorials/PointCloudGeneration/images/vazo.png?raw=true "Title")
 
