@@ -23,7 +23,14 @@ in DepthCamera class. Realsense camera configuration consist of many options the
 "scaling factor" refers to the relation between depth map units and meters; 
 it has nothing to do with the focal length of the camera.
 Depth maps are typically stored in 16-bit unsigned integers at millimeter scale, thus to obtain Z value in meters, the depth map pixels need to be divided by 1000.
+### Color image
+![frame_color](https://user-images.githubusercontent.com/47300390/149009191-fe030fb6-086c-480f-bdb1-0ff888e8a5fe.png)
 
-![Alt text](/home/mustafa/Desktop/RealSenseTutorials/PointCloudGeneration/images/frame_color.png?raw=true "Title")
-![Alt text](/home/mustafa/Desktop/RealSenseTutorials/PointCloudGeneration/images/vazo.png?raw=true "Title")
+### Depth image
+![vazo](https://user-images.githubusercontent.com/47300390/149009206-d9734e92-8999-4fc6-a879-ff1a044136ae.png)
+
+### Pointclouds
+![Screenshot from 2022-01-11 22-20-21](https://user-images.githubusercontent.com/47300390/149009242-dc13cd96-24f1-45cd-b0ce-28018d50fde5.png)
+![Screenshot from 2022-01-11 22-20-44](https://user-images.githubusercontent.com/47300390/149009258-a1364987-6d77-4185-ae21-f821ffdc7be6.png)
+
 
