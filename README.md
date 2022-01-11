@@ -6,6 +6,10 @@ pip install open3d
 pip install pyrealsense2
 
 ## Usage
+There are two options for obtaining point cloud data in ply format, first we can create point clouds with numpy or we can use ready-made functions from open3d library. But the important point is to understand how these point clouds are formed, so it will be more thought-provoking to write it from scratch with numpy.That's why I added both functions to the utils.py
+
+python realsensePointCloud.py
+
 
 ## From depth map to point cloud
 
