@@ -15,7 +15,9 @@ imwidth, imheight = (640, 480)
 def main():
 
     dc = DepthCamera(imwidth, imheight)
+
     depth_scale = dc.get_depth_scale()
+
     while True:
 
         ret , depth_raw_frame, color_raw_frame = dc.get_raw_frame()
@@ -38,8 +40,9 @@ def main():
         cv2.imshow("Frame",  color_frame )
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
-            #cv2.imwrite("frame_color.png", color_frame)
-            #cv2.imwrite("frame_depth.png",  depth_frame )
+            cv2.imwrite("frame_color.png", color_frame)
+            cv2.imwrite("frame_depth.png",  depth_frame )
+            plt.imsave("vazo.png", depth_frame)
             break
     
     dc.release() # release rs pipeline
