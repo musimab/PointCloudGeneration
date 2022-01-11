@@ -45,6 +45,11 @@ class DepthCamera:
         return True, depth_frame, color_frame
     
     def get_depth_scale(self):
+        """
+        "scaling factor" refers to the relation between depth map units and meters; 
+        it has nothing to do with the focal length of the camera.
+        Depth maps are typically stored in 16-bit unsigned integers at millimeter scale, thus to obtain Z value in meters, the depth map pixels need to be divided by 1000.
+        """
         return self.depth_scale
 
     def release(self):
