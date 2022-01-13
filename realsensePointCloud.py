@@ -9,18 +9,18 @@ from utils import depth2PointCloud
 from utils import create_point_cloud_file2
 from utils import write_point_cloud
 
-imwidth, imheight = (640, 480)
+resolution_width, resolution_height = (640, 480)
 
 
 def main():
 
-    dc = DepthCamera(imwidth, imheight)
+    Realsensed435Cam = DepthCamera(resolution_width, resolution_height)
 
-    depth_scale = dc.get_depth_scale()
+    depth_scale = Realsensed435Cam.get_depth_scale()
 
     while True:
 
-        ret , depth_raw_frame, color_raw_frame = dc.get_raw_frame()
+        ret , depth_raw_frame, color_raw_frame = Realsensed435Cam.get_raw_frame()
         if not ret:
             print("Unable to get a frame")
         
@@ -45,7 +45,7 @@ def main():
             #plt.imsave("vazo.png", depth_frame)
             break
     
-    dc.release() # release rs pipeline
+    Realsensed435Cam.release() # release rs pipeline
 
 
 if __name__ == '__main__':
