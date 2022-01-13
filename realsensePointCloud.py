@@ -36,13 +36,13 @@ def main():
         #plt.show()
         color_frame = np.asanyarray(color_raw_frame.get_data())
         depth_frame = np.asanyarray(depth_raw_frame.get_data())
-        
+        print("frame shape:", color_frame.shape)
         cv2.imshow("Frame",  color_frame )
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
-            cv2.imwrite("frame_color.png", color_frame)
-            cv2.imwrite("frame_depth.png",  depth_frame )
-            plt.imsave("vazo.png", depth_frame)
+            #cv2.imwrite("frame_color.png", color_frame)
+            #cv2.imwrite("frame_depth.png",  depth_frame )
+            #plt.imsave("vazo.png", depth_frame)
             break
     
     dc.release() # release rs pipeline
