@@ -11,6 +11,8 @@ from utils import write_point_cloud
 
 resolution_width, resolution_height = (640, 480)
 
+clip_distance_max = 5.00 #remove from the depth image all values above a given value (meters).
+                          # Disable by giving negative value (default)
 
 def main():
 
@@ -29,9 +31,9 @@ def main():
         #o3d.visualization.draw_geometries([pcd]) 
         
         #numpy with point cloud generation
-        points_xyz_rgb = depth2PointCloud(depth_raw_frame, color_raw_frame, depth_scale)
-        write_point_cloud("room.ply", points_xyz_rgb)
-        create_point_cloud_file2(points_xyz_rgb,"room2.ply")
+        points_xyz_rgb = depth2PointCloud(depth_raw_frame, color_raw_frame, depth_scale, clip_distance_max)
+        #write_point_cloud("chair2.ply", points_xyz_rgb)
+        create_point_cloud_file2(points_xyz_rgb,"chair.ply")
                 
         #plt.show()
         color_frame = np.asanyarray(color_raw_frame.get_data())
@@ -40,9 +42,8 @@ def main():
         cv2.imshow("Frame",  color_frame )
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q'):
-            #cv2.imwrite("frame_color.png", color_frame)
-            #cv2.imwrite("frame_depth.png",  depth_frame )
-            #plt.imsave("vazo.png", depth_frame)
+            cv2.imwrite("frame_color.png", color_frame)
+            plt.imsave("frame_depth.png", depth_frame)
             break
     
     Realsensed435Cam.release() # release rs pipeline

@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import cv2
 import open3d as o3d
 
-def depth2PointCloud(depth, rgb, depth_scale):
+def depth2PointCloud(depth, rgb, depth_scale, clip_distance_max):
     """Transform a depth image into a point cloud with one point for each
     pixel in the image, using the camera transform for a camera
     centred at cx, cy with field of view fx, fy.
@@ -26,8 +26,9 @@ def depth2PointCloud(depth, rgb, depth_scale):
     c, r = np.meshgrid(np.arange(cols), np.arange(rows), sparse=True)
     r = r.astype(float)
     c = c.astype(float)
-
-    valid = (depth > 0) & (depth < 255)
+    print(np.max(depth))
+    valid = (depth > 0) & (depth < clip_distance_max) # remove from the depth image all values above a given value (meters).
+    print(valid)
     valid = np.ravel(valid)
     z = depth 
     x =  z * (c - intrinsics.ppx) / intrinsics.fx
@@ -41,7 +42,7 @@ def depth2PointCloud(depth, rgb, depth_scale):
     g = np.ravel(rgb[:,:,1])[valid]
     b = np.ravel(rgb[:,:,2])[valid]
     
-    pointsxyzrgb = np.dstack((x, y, z, r, g, b))
+    pointsxyzrgb = np.dstack((x, y, z, b, g, r))
     pointsxyzrgb = pointsxyzrgb.reshape(-1,6)
 
     return pointsxyzrgb
@@ -70,6 +71,7 @@ def create_point_cloud_file2(vertices, filename):
     with open(filename, 'w') as f:
         f.write(ply_header %dict(vert_num=len(vertices)))
         np.savetxt(f,vertices,'%f %f %f %d %d %d')
+
 
 def createPointCloudO3D(color_frame, depth_frame):
     
